@@ -4,8 +4,15 @@ Mise à jour d'une [étude réalisée en 2016](https://github.com/jhroy/theses) 
 
 ### Source des données
 
-Trouver des données a été un parcours du combattant. Je vous invite à me suivre.
+Moissonner des données dans les répertoires institutionnels des universités, au Québec, c'est comme faire du ski de fond. Il y a trois niveaux:
 
-J'ai commencé par cogner à la porte de [Thèses Canada](https://www.bac-lac.gc.ca/fra/services/theses/Pages/theses-canada.aspx), offert par Bibliothèque et Archives Canada. Mais leur outil de recherche se prête mal à une collecte automatisée de données.
+- :green_circle: facile
+- :blue_square: intermédiaire
+- :large_orange_diamond: difficile
+- :skull: malaaaade
+
+- Celles où il est au
+
+J'ai commencé par essayer d'en puiser dans [Thèses Canada](https://www.bac-lac.gc.ca/fra/services/theses/Pages/theses-canada.aspx), offert par Bibliothèque et Archives Canada et regroupant normalement. Mais leur outil de recherche se prête mal à une collecte automatisée de données.
 
 Je me suis donc tourné vers la [section Thèses et mémoires d'Érudit](https://www.erudit.org/fr/theses/).
