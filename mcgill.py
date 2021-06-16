@@ -8,7 +8,7 @@ from correspondances import escholarship
 
 fichier = "mcgill2021.csv"
 
-for an in range(2003,2022):
+for an in range(2000,2022):
 	for p in range(1,26):
 		url = "https://www.erudit.org/fr/theses/mcgill/{}/?page={}".format(an,p)
 		# print(url)
