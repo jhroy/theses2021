@@ -9,7 +9,7 @@ fichier = "udesherbrooke2021.csv"
 # grades = ["Thèse","Mémoire"]
 entetes = {"User-Agent":"Jean-Hugues Roy, UQAM, roy.jean-hugues@uqam.ca - moissonnage en vue d'un article pour la revue de l'ACFAS"}
 
-for an in range(2016,2022):
+for an in range(2000,2022):
 	for p in range(1,11):
 		url = "https://www.erudit.org/fr/theses/sherbrooke/{}/?page={}".format(an,p)
 		print(url)
