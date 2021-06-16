@@ -52,12 +52,22 @@ https://escholarship.mcgill.ca/concern/theses/db78tg815?locale=en
 
 Comme la redirection automatique ne fonctionnait pas quand mon script se connectait au premier URL, je cherchais un point commun entre les deux URL... Mais il n'y en a aucun. Habituellement, chaque thèse ou mémoire a un identifiant unique. Mais dans le cas de McGill, ils en on deux. Un pour l'ancien répertoire (et dans notre exemple, cet identifiant est inscrit dans l'URL juste après `object_id`, à savoir **110698**), un pour le nouveau (toujours dans notre exemple, on le retrouve juste avant le `?locale=en` et il s'agit de **db78tg815**). Comment associer ces deux identifiants?
 
-Eh bien j'ai trouvé sur le site de McGill [un fichier javascript qui joue le rôle de table de correspondance](https://testtool.library.mcgill.ca/redirects.js) entre ces deux identifiants. J'ai transposé cette table de correspondance dans un fichier python (il y a plus de 51&nbsp;000 paires d'identifiants qui y sont associés) que j'ai appelé [**correspondances.py**](correspondances.py). Faites-y une recherche avec les deux identifiants du mémoire de Mme Beaudoin. C'est grâce à cette table que mon script [**mcgill.py**](mcgill.py) a pu moissonner les milliers de documents se trouvant dans le répertoire de McGill.
+En fouinant dans les outils pour développeurs, j'ai trouvé sur le site de McGill [un fichier javascript appelé *redirect.js* qui joue justement le rôle de table de correspondance](https://testtool.library.mcgill.ca/redirects.js) entre ces deux identifiants. J'ai transposé cette table de correspondance dans un fichier python (il y a plus de 51&nbsp;000 paires d'identifiants qui y sont associés) que j'ai appelé [**correspondances.py**](correspondances.py). Faites-y une recherche avec les deux identifiants du mémoire de Mme Beaudoin si vous êtes curieux-ses. C'est grâce à cette table que mon script [**mcgill.py**](mcgill.py) a finalement pu moissonner les milliers de documents se trouvant dans le répertoire de McGill.
 
 ### :skull: malaaaade
 
-HEC!!! HAAAA!
+<img src="images/hec-reflexion.png" width="750">
 
-J'ai commencé par essayer d'en puiser dans [Thèses Canada](https://www.bac-lac.gc.ca/fra/services/theses/Pages/theses-canada.aspx), offert par Bibliothèque et Archives Canada et regroupant normalement. Mais leur outil de recherche se prête mal à une collecte automatisée de données.
+Il n'y a qu'une université dont je n'ai pas encore parlé&nbsp;: HEC Montréal. Son répertoire, [Réflexion](https://reflexion.hec.ca/) (inaccessible au moment où ces lignes sont écrites, mi-juiin 2021), a été un véritable casse-tête à moissonnner. Voici le sentier tortueux que j'ai dû emprunter.
 
-Je me suis donc tourné vers 
+J'ai d'abord copié-collé (eh oui) le code HTML de deux résultats de recherche dans son répertoire&nbsp;:
+- l'un pour les doctorats&nbsp;: [**hec-doctorats.html**](hec-doctorats.html) et
+- deux pour les maîtrises&nbsp;: [**hec-maitrises-1.html**](hec-maitrises-1.html) et [**hec-maitrises-2.html**](hec-maitrises-2.html)
+
+Ensuite un premier script ([**hec0.py**](hec0.py)) allait les lire et se connectait une première fois au site de l'institution pour recueillir les identifiants uniques (des *uuid*) de chaque thèse ou mémoire et les confiner dans un fichier csv ([**hecURLs.csv**](hecURLs.csv))...
+
+... qu'un second script ([**hec.py**](hec.py)) devait lire, puis utiliser [Selenium](https://selenium-python.readthedocs.io/) afin de simuler un être humain naviguant sur le site de HEC Montréal pour aller recueillir, très lentement, les métadonnées sur les plus de 5&nbsp;000 dissertations déposées ces vingt dernières années dans cette institution. Pour vous donner une idée de la lenteur de cette opération, voyez la vidéo ci-dessous&nbsp;:
+
+<a href="https://youtu.be/uIE9A0CMREo" target="_blank"><img src="images/hec-video.png" width="750"></a>
+
+
