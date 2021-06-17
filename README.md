@@ -7,6 +7,10 @@ Le travail décrit ci-dessous a servi à deux articles publiés par le *Magazine
 - [Les thèses et les mémoires publiés au Québec raccourcissent...](https://www.acfas.ca/publications/magazine/2021/04/theses-memoires-publies-au-quebec-raccourcissent) (avril 2021) et
 - [*Trending* au Québec : faire son mémoire ou sa thèse *in English*](https://www.acfas.ca/publications/magazine/2021/06/trending-au-quebec-faire-son-memoire-sa-these-in-english) (juin 2021)
 
+### L'ensemble des données se trouve dans le fichier [**thesesQC_2000-2020.csv**](thesesQC_2000-2020.csv)
+
+Merci d'ajouter une ⭐ à ce répertoire si vous téléchargez ces données et si vous les appréciez. Elles ont été longues à récolter! Je vous raconte ça 👇
+
 ## Source des données
 
 Moissonner des données dans les répertoires institutionnels des universités, au Québec, c'est comme faire du ski de fond. Il y a quatre niveaux:
@@ -82,7 +86,7 @@ Ensuite un premier script ([**hec0.py**](hec0.py)) allait les lire pour en extra
 
 ## Conciliation
 
-Je donne plusieurs détails méthodologiques dans les [articles](https://www.acfas.ca/publications/magazine/2021/04/theses-memoires-publies-au-quebec-raccourcissent) [publiés](https://www.acfas.ca/publications/magazine/2021/06/trending-au-quebec-faire-son-memoire-sa-these-in-english) dans le *Magazine* de l'Acfas. Je peux ajouter que&nbsp;:
+Je donne plusieurs détails méthodologiques dans les articles publiés dans le *Magazine* de l'Acfas. Je peux ajouter que&nbsp;:
 - Parfois, dans un dépôt institutionnel, on trouve des thèses ou mémoires réalisés dans d'autres universités. Lorsque l'université était québécoise, cette thèse était conservée et attribuée à l'autre université, sinon elle était retranchée. Dans le cas de cotutelles, s'il y avait au moins une université québécoise d'impliquée, la thèse ou le mémoire étaient conservés et attribués à l'université québécoise.
 - Il arrivait aussi qu'une même dissertation se retrouve dans deux répertoires institutionnels québécois différents. C'est le cas de ce mémoire en liguistique, par exemple, qui est présent à la fois [dans le répertoire de l'UQAC](https://constellation.uqac.ca/2969/) et dans [celui de l'Université Laval](https://corpus.ulaval.ca/jspui/handle/20.500.11794/25356?mode=full). À quelle université l'attribuer? À l'université à laquelle est rattaché(e) le ou la prof qui a supervisé le travail. Ici, parce qu'il s'agit d'une «&nbsp;Maîtrise en linguistiqu de l'Université Laval offert[e] en extension à l'Université du Québec à Chicoutimi&nbsp;», il pourrait être tentant de choisir l'Université Laval puisque c'est elle qui décerne le grade et que celui-ci n'est qu'«&nbsp;étendu&nbsp;» à l'UQAC. Mais ce serait faire fi de l'institution qui réalise le travail le plus essentiel, celui de la supervision de l'étudiant ou de l'étudiante.
 - J'ai par ailleurs tout fait pour éliminer les doublons; il est néanmoins possible que certains aient pu échapper à ma vigilance.
@@ -91,6 +95,20 @@ Je donne plusieurs détails méthodologiques dans les [articles](https://www.acf
 
 Une fois ce nettoyage des données, j'ai réuni tous les fichiers CSV obtenus en ne conservant que 10 variables par document, en incluant des données de [ProQuest Dissertations & Theses Global](https://about.proquest.com/en/products-services/pqdtglobal/) fournies par [Vincent Larivière](https://ebsi.umontreal.ca/repertoire-ecole/vue/lariviere-vincent/) et ayant permis de combler un vide pour les années 2000 à 2008 dans le cas de Polytechnique Montréal.
 
-L'ensemble des données se trouve dans le fichier [**thesesQC_2000-2020.csv**](thesesQC_2000-2020.csv)
+## Détection des langues
 
-Merci d'ajouter une ⭐ à ce répertoire si vous téléchargez ces données, qui ont été longues à récolter!
+Lors de mon moissonnage, je voulais d'abord compter le [nombre de pages](https://www.acfas.ca/publications/magazine/2021/04/theses-memoires-publies-au-quebec-raccourcissent) des thèses et mémoires. Mais je me suis rendu compte qu'une autre métadonnée intéressante, pas toujours disponible, pouvait être pertinente&nbsp;: [la langue](https://www.acfas.ca/publications/magazine/2021/06/trending-au-quebec-faire-son-memoire-sa-these-in-english) de ces thèses et mémoires.
+
+J'ai d'abord soumis les **titres** de toutes les dissertations à une première vérification. Chaque titre était analysé par trois modules gratuits de détection de la langue ([*langId*](https://pypi.org/project/langid/), [*langDetect*](https://pypi.org/project/langdetect/) et [*Polyglot*](https://pypi.org/project/polyglot/)). Lorsque deux ou trois sur trois s'entendaient sur la langue dans laquelle il était rédigé, cette langue était attribuée au document. C'est le script [**langues.py**](langues.py) qui fait ce travail.
+
+J'ai cependant voulu faire une deuxième vérification dans le **texte complet** des thèses et mémoires lui-même. J'ai donc constitué un échantillon avec&nbsp;:
+- les cas où la langue du titre détectée par mon script *langues.py* différait de celle indiquée par les métadonnées (1&nbsp;300 cas),
+- les documents dont le titre était bilingue, chaque langue séparée par le symbole égal (« = »),
+- toutes les thèses ou mémoires dont le titre est en anglais et qui ont été diffusés après 2010, histoire de vérifier s'il y a effectivement une anglicisation dans la production des étudiant-e-s des cycles supérieurs ces dernières années.
+
+L'échantillon en question se trouve dans un fichier que j'ai baptisé, de façon tout à fait originale, [**echantillon.csv**](echantillon.csv). Il regroupe près de 5&nbsp;000 thèses et mémoires (6,5% de l'ensemble).
+
+Ma deuxième vérification mobilise l'outil [Translator](https://docs.microsoft.com/fr-ca/azure/cognitive-services/translator/quickstart-translator?tabs=python) des Services cognitifs de Microsoft. Elle est réalisée par le script [**langues-verif.py**](langues-verif.py) qui a dû exclure les thèses et mémoires de HEC Montréal dont le répertoire n'était pas accessible au moment où elle a été effectuée (début juin 2021).
+
+
+Comme je le disais plus haut, l'ensemble des données se trouve dans le fichier [**thesesQC_2000-2020.csv**](thesesQC_2000-2020.csv).
