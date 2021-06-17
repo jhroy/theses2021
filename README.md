@@ -89,4 +89,8 @@ Je donne plusieurs détails méthodologiques dans les [articles](https://www.acf
 - Mes scripts étaient conçus pour passer au document suivant s'ils éprouvaient quelque difficulté que ce soit à se connecter aux répertoires institutionnels; il est donc possible qu'il manque des documents.
 - Il faut se rappeler que mon travail ne permet de se pencher que sur **le contenu des répertoires institutionnels des universités québécoises**. Il ne prétend pas regrouper la totalité de la production des étudiant-e-s des cycles supérieurs durant la période étudiée, car les pratiques d'utilisation des dépôts institutionnels ne sont pas les mêmes partout et ont changé au fil des ans.
 
-Une fois ce nettoyage des données, j'ai réuni tous les fichiers CSV obtenus
+Une fois ce nettoyage des données, j'ai réuni tous les fichiers CSV obtenus en ne conservant que 10 variables par document, en incluant des données de [ProQuest Dissertations & Theses Global](https://about.proquest.com/en/products-services/pqdtglobal/) fournies par [Vincent Larivière](https://ebsi.umontreal.ca/repertoire-ecole/vue/lariviere-vincent/) et ayant permis de combler un vide pour les années 2000 à 2008 dans le cas de Polytechnique Montréal.
+
+L'ensemble des données se trouve dans le fichier [**thesesQC_2000-2020.csv**](thesesQC_2000-2020.csv)
+
+Merci d'ajouter une ⭐ à ce répertoire si vous téléchargez ces données, qui ont été longues à récolter!
