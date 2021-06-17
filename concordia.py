@@ -9,9 +9,6 @@ from concordiaData import donnees
 fichier = "concordia2021.csv"
 entetes = {"User-Agent":"Jean-Hugues Roy, UQAM, roy.jean-hugues@uqam.ca - moissonnage en vue d'un article pour la revue de l'ACFAS"}
 
-# concordia = json.loads("concordia.json")
-# print(donnees)
-
 for these in donnees["@graph"]:
 	try:
 		if int(these["datePublished"]) > 1999:
