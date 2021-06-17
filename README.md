@@ -110,5 +110,14 @@ L'échantillon en question se trouve dans un fichier que j'ai baptisé, de faço
 
 Ma deuxième vérification mobilise l'outil [Translator](https://docs.microsoft.com/fr-ca/azure/cognitive-services/translator/quickstart-translator?tabs=python) des Services cognitifs de Microsoft. Elle est réalisée par le script [**langues-verif.py**](langues-verif.py) qui a dû exclure les thèses et mémoires de HEC Montréal dont le répertoire n'était pas accessible au moment où elle a été effectuée (début juin 2021).
 
+## Réalisation des graphiques
 
-Comme je le disais plus haut, l'ensemble des données se trouve dans le fichier [**thesesQC_2000-2020.csv**](thesesQC_2000-2020.csv).
+Pour la réalisation des graphiques, je me suis servi de la formidable bibliothèque graphique [plotly express pour python](https://plotly.com/python/plotly-express/), fièrement conçue à Montréal.
+
+Mon préféré est celui-ci, qui illustre bien la tendance à l'anglais dans les thèses de certaines universités&nbsp;:
+
+![Proportion de thèses de doctorat rédigées en anglais par université, par année (2000-2020), par ordre croissant du pourcentage total des documents rédigés en anglais par université sur toute la période.](figure4.png)
+
+Voilà l'essentiel de mon parcours méthodologique. Pour toute question, commentaire, ou pour me dire que mes skis étaient mal fartés, [écrivez-moi](mailto:roy.jean-hugues@uqam.ca)!
+
+En attendant, comme je le disais plus haut, l'ensemble des données se trouve dans le fichier [**thesesQC_2000-2020.csv**](thesesQC_2000-2020.csv).
