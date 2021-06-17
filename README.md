@@ -45,8 +45,7 @@ L'UQAC est elle aussi dans Érudit, mais je ne suis pas passé par là. J'ai tro
 
 À noter, enfin, que les données des répertoires de certaines universités ne comptaient pas le nombre de pages de certaines de leurs dissertations. J'ai dû rédiger de courts scripts pour compléter ces données dans les cas de&nbsp;:
 - Concordia ([**concordia.py**](concordia.py))
-- Polytechnique Montréal ([**poly.py**](poly.py))
-- l'UQAC ([**uqac.py**](uqac.py)) et
+- Polytechnique Montréal ([**poly.py**](poly.py)) et
 - l'UQAM ([**uqam.py**](uqam.py))
 
 ### <img src="images/difficile.png"> Difficile
