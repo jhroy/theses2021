@@ -2,6 +2,11 @@
 
 Mise à jour d'une [étude réalisée en 2016](https://github.com/jhroy/theses) sur la longueur des thèses et mémoires du Québec. La première édition couvrait la période 1995-2016 et ne comptait que 13 universités. Cette seconde édition est donc revue (2000 à 2020) et augmentée (17 universités).
 
+Le travail décrit ci-dessous a servi à deux articles publiés par le *Magazine* de l'Acfas&nbsp;:
+
+- [Les thèses et les mémoires publiés au Québec raccourcissent...](https://www.acfas.ca/publications/magazine/2021/04/theses-memoires-publies-au-quebec-raccourcissent) (avril 2021) et
+- [*Trending* au Québec : faire son mémoire ou sa thèse *in English*](https://www.acfas.ca/publications/magazine/2021/06/trending-au-quebec-faire-son-memoire-sa-these-in-english) (juin 2021)
+
 ## Source des données
 
 Moissonner des données dans les répertoires institutionnels des universités, au Québec, c'est comme faire du ski de fond. Il y a quatre niveaux:
@@ -36,7 +41,13 @@ Voici les scripts que j'ai rédigés pour&nbsp;:
 
 À quelques nuances près, vous verrez que les trois scripts font un travail très semblable.
 
-Enfin, l'UQAC est elle aussi dans Érudit, mais je ne suis pas passé par là. J'ai trouvé plus facile d'exporter [une seule page HTML de son répertoire institutionnel](uqac.html) et d'effectuer un moissonnage à partir de cette unique page, ce qui donne un script beaucoup plus simple ([**uqac.py**](uqac.py)) et un moissonnage plus rapide.
+L'UQAC est elle aussi dans Érudit, mais je ne suis pas passé par là. J'ai trouvé plus facile d'exporter [une seule page HTML de son répertoire institutionnel](uqac.html) et d'effectuer un moissonnage à partir de cette unique page, ce qui donne un script beaucoup plus simple ([**uqac.py**](uqac.py)) et un moissonnage plus rapide.
+
+À noter, enfin, que les données des répertoires de certaines universités ne comptaient pas le nombre de pages de certaines de leurs dissertations. J'ai dû rédiger de courts scripts pour compléter ces données dans les cas de&nbsp;:
+- Concordia ([**concordia.py**](concordia.py))
+- Polytechnique Montréal ([**poly.py**](poly.py))
+- l'UQAC ([**uqac.py**](uqac.py)) et
+- l'UQAM ([**uqam.py**](uqam.py))
 
 ### <img src="images/difficile.png"> Difficile
 
@@ -64,10 +75,19 @@ J'ai d'abord copié-collé (eh oui) le code HTML de deux résultats de recherche
 - l'un pour les doctorats&nbsp;: [**hec-doctorats.html**](hec-doctorats.html) et
 - deux pour les maîtrises&nbsp;: [**hec-maitrises-1.html**](hec-maitrises-1.html) et [**hec-maitrises-2.html**](hec-maitrises-2.html)
 
-Ensuite un premier script ([**hec0.py**](hec0.py)) allait les lire et se connectait une première fois au site de l'institution pour recueillir les identifiants uniques (des *uuid*) de chaque thèse ou mémoire et les confiner dans un fichier csv ([**hecURLs.csv**](hecURLs.csv))...
+Ensuite un premier script ([**hec0.py**](hec0.py)) allait les lire pour en extraire les identifiants uniques (des *uuid*) de chaque thèse ou mémoire et les confiner dans un fichier csv ([**hecURLs.csv**](hecURLs.csv))...
 
 ... qu'un second script ([**hec.py**](hec.py)) devait lire, puis utiliser [Selenium](https://selenium-python.readthedocs.io/) afin de simuler un être humain naviguant sur le site de HEC Montréal pour aller recueillir, très lentement, les métadonnées sur les plus de 5&nbsp;000 dissertations déposées ces vingt dernières années dans cette institution. Pour vous donner une idée de la lenteur de cette opération, voyez la vidéo ci-dessous&nbsp;:
 
 <a href="https://youtu.be/uIE9A0CMREo" target="_blank"><img src="images/hec-video.png" width="750"></a>
 
+## Conciliation
 
+Je donne plusieurs détails méthodologiques dans les [articles](https://www.acfas.ca/publications/magazine/2021/04/theses-memoires-publies-au-quebec-raccourcissent) [publiés](https://www.acfas.ca/publications/magazine/2021/06/trending-au-quebec-faire-son-memoire-sa-these-in-english) dans le *Magazine* de l'Acfas. Je peux ajouter que&nbsp;:
+- Parfois, dans un dépôt institutionnel, on trouve des thèses ou mémoires réalisés dans d'autres universités. Lorsque l'université était québécoise, cette thèse était conservée et attribuée à l'autre université, sinon elle était retranchée. Dans le cas de cotutelles, s'il y avait au moins une université québécoise d'impliquée, la thèse ou le mémoire étaient conservés et attribués à l'université québécoise.
+- Il arrivait aussi qu'une même dissertation se retrouve dans deux répertoires institutionnels québécois différents. C'est le cas de ce mémoire en liguistique, par exemple, qui est présent à la fois [dans le répertoire de l'UQAC](https://constellation.uqac.ca/2969/) et dans [celui de l'Université Laval](https://corpus.ulaval.ca/jspui/handle/20.500.11794/25356?mode=full). À quelle université l'attribuer? À l'université à laquelle est rattaché(e) le ou la prof qui a supervisé le travail. Ici, parce qu'il s'agit d'une «&nbsp;Maîtrise en linguistiqu de l'Université Laval offert[e] en extension à l'Université du Québec à Chicoutimi&nbsp;», il pourrait être tentant de choisir l'Université Laval puisque c'est elle qui décerne le grade et que celui-ci n'est qu'«&nbsp;étendu&nbsp;» à l'UQAC. Mais ce serait faire fi de l'institution qui réalise le travail le plus essentiel, celui de la supervision de l'étudiant ou de l'étudiante.
+- J'ai par ailleurs tout fait pour éliminer les doublons; il est néanmoins possible que certains aient pu échapper à ma vigilance.
+- Mes scripts étaient conçus pour passer au document suivant s'ils éprouvaient quelque difficulté que ce soit à se connecter aux répertoires institutionnels; il est donc possible qu'il manque des documents.
+- Il faut se rappeler que mon travail ne permet de se pencher que sur **le contenu des répertoires institutionnels des universités québécoises**. Il ne prétend pas regrouper la totalité de la production des étudiant-e-s des cycles supérieurs durant la période étudiée, car les pratiques d'utilisation des dépôts institutionnels ne sont pas les mêmes partout et ont changé au fil des ans.
+
+Une fois ce nettoyage des données, j'ai réuni tous les fichiers CSV obtenus
