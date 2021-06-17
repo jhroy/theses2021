@@ -43,9 +43,4 @@ for paper in papers:
 	obelix = csv.writer(asterix)
 	obelix.writerow(infos)
 
-	# time.sleep(2)
-				
-# 			except:
-# 				pass
-
 	print("+"*10)
