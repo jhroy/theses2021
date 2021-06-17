@@ -54,11 +54,11 @@ Comme la redirection automatique ne fonctionnait pas quand mon script se connect
 
 En fouinant dans les outils pour développeurs, j'ai trouvé sur le site de McGill [un fichier javascript appelé *redirect.js* qui joue justement le rôle de table de correspondance](https://testtool.library.mcgill.ca/redirects.js) entre ces deux identifiants. J'ai transposé cette table de correspondance dans un fichier python (il y a plus de 51&nbsp;000 paires d'identifiants qui y sont associés) que j'ai appelé [**correspondances.py**](correspondances.py). Faites-y une recherche avec les deux identifiants du mémoire de Mme Beaudoin si vous êtes curieux-ses. C'est grâce à cette table que mon script [**mcgill.py**](mcgill.py) a finalement pu moissonner les milliers de documents se trouvant dans le répertoire de McGill.
 
-### :skull: malaaaade
+### <img src="images/expert.png"> Très difficile!!!
 
 <img src="images/hec-reflexion.png" width="750">
 
-Il n'y a qu'une université dont je n'ai pas encore parlé&nbsp;: HEC Montréal. Son répertoire, [Réflexion](https://reflexion.hec.ca/) (inaccessible au moment où ces lignes sont écrites, mi-juiin 2021), a été un véritable casse-tête à moissonnner. Voici le sentier tortueux que j'ai dû emprunter.
+Il n'y a qu'une université dont je n'ai pas encore parlé&nbsp;: HEC Montréal. Son répertoire, [Réflexion](https://reflexion.hec.ca/) (inaccessible au moment où ces lignes sont écrites, mi-juin 2021), a été un véritable casse-tête à moissonnner. Voici le sentier tortueux que j'ai dû emprunter.
 
 J'ai d'abord copié-collé (eh oui) le code HTML de deux résultats de recherche dans son répertoire&nbsp;:
 - l'un pour les doctorats&nbsp;: [**hec-doctorats.html**](hec-doctorats.html) et
